@@ -62,12 +62,13 @@ module.exports = {
     }
   },
 
-  update: async (id, product) => {
+  update: async (id, newProduct) => {
     try {
       const product = await Product.findByPk(id);
-      const updatedProduct = {...product, ...product};
+      const updatedProduct = {...newProduct, ...product};
       await Product.update(updatedProduct, {where: {id}});
-      return successMessage.PRODUCT_SUCCESSFULLY_EDITED(product.product_name);
+      return successMessage
+          .PRODUCT_SUCCESSFULLY_EDITED(updatedProduct.product_name);
     } catch (err) {
       console.log(err);
       return errorMessage.PRODUCT_NOT_UPDATED;
