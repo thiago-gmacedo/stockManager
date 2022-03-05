@@ -20,4 +20,9 @@ module.exports = {
   USER_NOT_UPDATED: {status: 500, payload: 'Problema ao atualizar usuário'},
 
   // roles errors messages
+
+  // auth errors messages
+  TOKEN_NOT_FOUND: {status: 500, payload: 'Token não encontrado'},
+  SOME_ERROR: {status: 500, payload: 'Algo deu errado'},
+  INVALID_CREDENTIALS: {status: 500, payload: 'Credenciais inválidas'},
 };
