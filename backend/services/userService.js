@@ -60,4 +60,30 @@ module.exports = {
       return errorMessage.USER_NOT_UPDATED;
     }
   },
+
+  login: async (user) => {
+    [, hash] = req.readers.authorization.split(' ');
+    const [email, password] = Buffer.from(hash, 'base64').toString().split(':');
+
+    try {
+      const user = await User.findOne({where: {user_email: email}});
+      if (user.user_password === password) {
+        return successMessage.USER_SUCCESSFULY_LOGGED_IN(user.user_name);
+      }
+    } catch (err) {
+      console.log(err);
+      return errorMessage.USER_NOT_LOGGED_IN;
+    }
+  },
+
+  register: async (user) => {
+    try {
+      await User.create(user);
+      const token = jwt.sign({id: user.id});
+      return successMessage.USER_REGISTER_SUCCESSFUL(user.user_name, token);
+    } catch (err) {
+      console.log(err);
+      return errorMessage.USER_NOT_CREATED;
+    }
+  },
 };

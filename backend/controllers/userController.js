@@ -35,4 +35,21 @@ module.exports = {
           res.status(status).json(payload);
         });
   },
+
+  verifyLogin: (req, res) => {
+    const [, hash] = req.headers.authorization.split(' ');
+    const [email, password] = Buffer.from(hash, 'base64').toString().split(':');
+    userService.verifyLogin(email, password)
+        .then(({status, payload, token}) => {
+          res.status(status).json({payload, token});
+        });
+  },
+
+  register: (req, res) => {
+    userService.register(req.body)
+        .then(({status, payload, token}) => {
+          res.status(status).json({payload, token});
+        });
+  },
 };
+
