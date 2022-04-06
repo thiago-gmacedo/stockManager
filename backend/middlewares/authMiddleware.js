@@ -14,6 +14,7 @@ module.exports = async (req, res, next) => {
   try {
     const {id} = jwt.verify(token);
     const user = await userService.getOne(id);
+    console.log(user);
 
     if (!user) {
       const {status, payload} = errorMessage.USER_NOT_FOUND;
