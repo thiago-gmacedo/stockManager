@@ -6,7 +6,7 @@ import Login from '../components/Login';
 const routes = () => (
 	<BrowserRouter>
 		<Routes>
-			<Route element = { <Login /> } path="/" exact />
+			<Route element = { <Login /> } path="/login" />
 		</Routes>
 	</BrowserRouter>
 );
