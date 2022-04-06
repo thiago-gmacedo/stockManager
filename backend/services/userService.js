@@ -2,6 +2,7 @@
 const {User, Role} = require('../models');
 const errorMessage = require('../utils/errorMessage.js');
 const successMessage = require('../utils/successMessage.js');
+const {sign} = require('../auth/auth');
 
 module.exports = {
   getAll: async () => {
@@ -61,25 +62,24 @@ module.exports = {
     }
   },
 
-  login: async (user) => {
-    [, hash] = req.readers.authorization.split(' ');
-    const [email, password] = Buffer.from(hash, 'base64').toString().split(':');
-
+  login: async (email, password) => {
     try {
       const user = await User.findOne({where: {user_email: email}});
       if (user.user_password === password) {
-        return successMessage.USER_SUCCESSFULY_LOGGED_IN(user.user_name);
+        const token = await sign({id: user.id});
+        return successMessage.USER_LOGIN_SUCCESSFUL(user.user_name, token);
       }
+      throw new Error;
     } catch (err) {
       console.log(err);
-      return errorMessage.USER_NOT_LOGGED_IN;
+      return errorMessage.INVALID_CREDENTIALS;
     }
   },
 
   register: async (user) => {
     try {
       await User.create(user);
-      const token = jwt.sign({id: user.id});
+      const token = await sign({id: user.id});
       return successMessage.USER_REGISTER_SUCCESSFUL(user.user_name, token);
     } catch (err) {
       console.log(err);

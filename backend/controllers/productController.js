@@ -9,7 +9,6 @@ module.exports = {
   },
 
   getOne: (req, res) => {
-    console.log('batata');
     productService.getOne(req.params.id)
         .then(({status, payload}) => {
           res.status(status).json(payload);
