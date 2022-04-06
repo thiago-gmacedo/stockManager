@@ -39,7 +39,7 @@ module.exports = {
   verifyLogin: (req, res) => {
     const [, hash] = req.headers.authorization.split(' ');
     const [email, password] = Buffer.from(hash, 'base64').toString().split(':');
-    userService.verifyLogin(email, password)
+    userService.login(email, password)
         .then(({status, payload, token}) => {
           res.status(status).json({payload, token});
         });
