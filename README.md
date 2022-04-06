@@ -1,1 +1,1 @@
-# stockControll
+# stockManager
