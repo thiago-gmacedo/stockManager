@@ -1,9 +1,8 @@
-function App() {
-  return (
-    <>
-      <h1>Iniciando Frontend</h1>
-    </>
-  );
-}
+import React from 'react';
+import Routes from './components/routes';
 
-export default App;
+export default function App() {
+	return (
+		<Routes/>
+	);
+}
