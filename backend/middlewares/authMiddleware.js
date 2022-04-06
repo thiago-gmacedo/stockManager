@@ -4,9 +4,9 @@ const userService = require('../services/userService.js');
 const errorMessage = require('../utils/errorMessage.js');
 
 module.exports = async (req, res, next) => {
-  const [, token] = req.headers.authorization.split(' ');
+  const [, token] = await req.headers.authorization.split(' ');
 
-  if (!token) {
+  if (!token || token === 'undefined') {
     const {status, payload} = errorMessage.TOKEN_NOT_FOUND;
     return res.status(status).json(payload);
   };
