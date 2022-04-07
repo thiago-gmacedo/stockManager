@@ -11,8 +11,12 @@ const login = (username, password) => axios
 			username,
 			password,
 		},
-	}).then(response => console.log('fodase', response))
-	.catch(error => console.log('fodase', error.response.data));
+	})
+	.then(response => {
+		localStorage.setItem('token', response.data.token);
+		return {token: response.data.token};
+	})
+	.catch(error => error.response.data);
 
 export default {
 	login,
