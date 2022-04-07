@@ -22,7 +22,7 @@ module.exports = {
   // roles errors messages
 
   // auth errors messages
-  TOKEN_NOT_FOUND: {status: 500, payload: 'Token não encontrado'},
-  SOME_ERROR: {status: 500, payload: 'Algo deu errado'},
-  INVALID_CREDENTIALS: {status: 500, payload: 'Credenciais inválidas', token},
+  TOKEN_NOT_FOUND: {status: 401, payload: 'Token não encontrado'},
+  SOME_ERROR: {status: 401, payload: 'Algo deu errado'},
+  INVALID_CREDENTIALS: {status: 401, payload: 'Credenciais inválidas', token},
 };

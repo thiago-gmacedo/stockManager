@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import {LoginContainer, LoginInput, LoginButton} from './Login.style';
+import authService from '../services/auth.service';
 
 function Login() {
 	const [loginInfo, setLoginInfo] = useState({
@@ -31,7 +32,7 @@ function Login() {
 				onChange={handleChange}
 			/>
 			<LoginButton
-				onClick={() => console.log('fodas')}
+				onClick={() => authService.login(loginInfo.username, loginInfo.password)}
 			>
         Entrar
 			</LoginButton>

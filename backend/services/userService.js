@@ -65,7 +65,7 @@ module.exports = {
   login: async (email, password) => {
     try {
       const user = await User.findOne({where: {user_email: email}});
-      if (user.user_password === password) {
+      if (user && user.user_password === password) {
         const token = await sign({id: user.id});
         return successMessage.USER_LOGIN_SUCCESSFUL(user.user_name, token);
       }
