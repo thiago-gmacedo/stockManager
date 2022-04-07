@@ -54,4 +54,20 @@ module.exports = {
       payload: `Produto ${name} editado com sucesso!`,
     };
   },
+
+  USER_LOGIN_SUCCESSFUL: (name, token) => {
+    return {
+      status: 200,
+      payload: `Usuário ${name} logado com sucesso!`,
+      token,
+    };
+  },
+
+  USER_REGISTER_SUCCESSFUL: (name, token) => {
+    return {
+      status: 200,
+      payload: `Usuário ${name} registrado com sucesso!`,
+      token,
+    };
+  },
 };

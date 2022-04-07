@@ -2,6 +2,7 @@
 const {User, Role} = require('../models');
 const errorMessage = require('../utils/errorMessage.js');
 const successMessage = require('../utils/successMessage.js');
+const {sign} = require('../auth/auth');
 
 module.exports = {
   getAll: async () => {
@@ -58,6 +59,31 @@ module.exports = {
     } catch (err) {
       console.log(err);
       return errorMessage.USER_NOT_UPDATED;
+    }
+  },
+
+  login: async (email, password) => {
+    try {
+      const user = await User.findOne({where: {user_email: email}});
+      if (user.user_password === password) {
+        const token = await sign({id: user.id});
+        return successMessage.USER_LOGIN_SUCCESSFUL(user.user_name, token);
+      }
+      throw new Error;
+    } catch (err) {
+      console.log(err);
+      return errorMessage.INVALID_CREDENTIALS;
+    }
+  },
+
+  register: async (user) => {
+    try {
+      await User.create(user);
+      const token = await sign({id: user.id});
+      return successMessage.USER_REGISTER_SUCCESSFUL(user.user_name, token);
+    } catch (err) {
+      console.log(err);
+      return errorMessage.USER_NOT_CREATED;
     }
   },
 };
