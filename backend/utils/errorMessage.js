@@ -16,7 +16,7 @@ module.exports = {
   // users errors messages
   USERS_NOT_FOUND: {status: 500, payload: 'Problema ao buscar usuários'},
   USER_NOT_FOUND: {status: 500, payload: 'Usuário não encontrado'},
-  USER_NOT_CREATED: {status: 500, payload: 'Problema ao criar usuário'},
+  USER_NOT_CREATED: {status: 500, payload: 'Problema ao criar usuário', token},
   USER_NOT_DELETED: {status: 500, payload: 'Problema ao deletar usuário'},
   USER_NOT_UPDATED: {status: 500, payload: 'Problema ao atualizar usuário'},
   // roles errors messages

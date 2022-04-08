@@ -4,6 +4,7 @@ import {Route, BrowserRouter, Routes} from 'react-router-dom';
 import {
 	Login,
 	Products,
+	Register,
 } from '.';
 
 const routes = () => (
@@ -11,6 +12,7 @@ const routes = () => (
 		<Routes>
 			<Route element = { <Products /> } path="/" exact />
 			<Route element = { <Login /> } path="/login" />
+			<Route element = { <Register /> } path="/registro" />
 		</Routes>
 	</BrowserRouter>
 );
