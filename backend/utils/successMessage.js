@@ -85,5 +85,3 @@ module.exports = {
     };
   },
 };
-
-`Usuário ${user.name} registrado com sucesso!`
