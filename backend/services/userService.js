@@ -65,9 +65,9 @@ module.exports = {
   login: async (email, password) => {
     try {
       const user = await User.findOne({where: {user_email: email}});
-      if (user.user_password === password) {
+      if (user && user.user_password === password) {
         const token = await sign({id: user.id});
-        return successMessage.USER_LOGIN_SUCCESSFUL(user.user_name, token);
+        return successMessage.USER_LOGIN_SUCCESSFUL(user, token);
       }
       throw new Error;
     } catch (err) {
@@ -78,9 +78,9 @@ module.exports = {
 
   register: async (user) => {
     try {
-      await User.create(user);
+      await User.create({...user, user_role: 1});
       const token = await sign({id: user.id});
-      return successMessage.USER_REGISTER_SUCCESSFUL(user.user_name, token);
+      return successMessage.USER_REGISTER_SUCCESSFUL(user, token);
     } catch (err) {
       console.log(err);
       return errorMessage.USER_NOT_CREATED;
