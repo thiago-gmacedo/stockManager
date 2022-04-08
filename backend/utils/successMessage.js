@@ -55,19 +55,35 @@ module.exports = {
     };
   },
 
-  USER_LOGIN_SUCCESSFUL: (name, token) => {
+  USER_LOGIN_SUCCESSFUL: (user, token) => {
     return {
       status: 200,
-      payload: `Usuário ${name} logado com sucesso!`,
-      token,
+      payload: {
+        user: {
+          userName: user.user_name,
+          userEmail: user.user_email,
+          userRole: user.user_role,
+        },
+        token,
+        message: `Usuario ${user.user.name} validado com sucesso.`,
+      },
     };
   },
 
-  USER_REGISTER_SUCCESSFUL: (name, token) => {
+  USER_REGISTER_SUCCESSFUL: (user, token) => {
     return {
       status: 200,
-      payload: `Usuário ${name} registrado com sucesso!`,
-      token,
+      payload: {
+        user: {
+          userName: user.user_name,
+          userEmail: user.user_email,
+          userRole: user.user_role,
+        },
+        token,
+        message: `Usuario ${user.user.name} registrado com sucesso.`,
+      },
     };
   },
 };
+
+`Usuário ${user.name} registrado com sucesso!`
