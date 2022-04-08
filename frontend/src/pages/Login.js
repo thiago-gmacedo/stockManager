@@ -19,9 +19,10 @@ function Login() {
 	};
 
 	const handleLogin = async () => {
-		const login = await authService
+		const {payload} = await authService
 			.login(loginInfo.username, loginInfo.password);
-		if (login.token) {
+		if (payload.token) {
+			console.log('fodase', payload.token);
 			navigate('/');
 		}
 	};
@@ -42,7 +43,7 @@ function Login() {
 				onChange={handleChange}
 			/>
 			<LoginButton
-				onClick={() => handleLogin()}
+				onClick={handleLogin}
 			>
         Entrar
 			</LoginButton>

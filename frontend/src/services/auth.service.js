@@ -13,8 +13,9 @@ const login = (username, password) => axios
 		},
 	})
 	.then(response => {
-		localStorage.setItem('token', response.data.token);
-		return {token: response.data.token};
+		const {payload: {token, user}} = response.data;
+		localStorage.setItem('user', JSON.stringify({payload: {token, user}}));
+		return response.data;
 	})
 	.catch(error => error.response.data);
 

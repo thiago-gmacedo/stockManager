@@ -65,7 +65,7 @@ module.exports = {
           userRole: user.user_role,
         },
         token,
-        message: `Usuario ${user.user.name} validado com sucesso.`,
+        message: `Usuario ${user.user_name} validado com sucesso.`,
       },
     };
   },
@@ -80,7 +80,7 @@ module.exports = {
           userRole: user.user_role,
         },
         token,
-        message: `Usuario ${user.user.name} registrado com sucesso.`,
+        message: `Usuario ${user.user_name} registrado com sucesso.`,
       },
     };
   },

@@ -1,9 +1,23 @@
-import React from 'react';
+import React, {useEffect} from 'react';
+import {useNavigate} from 'react-router-dom';
 
-const Header = () => (
-	<div>
+const Header = () => {
+	const navigate = useNavigate();
+	const data = localStorage.getItem('user');
+	const payload = data ? JSON.parse(data).payload : null;
+
+	console.log(payload);
+	useEffect(() => {
+		if (!payload || !payload.token) {
+			navigate('/login');
+		}
+	}, []);
+
+	return (
+		<div>
       Componente Header
-	</div>
-);
+		</div>
+	);
+};
 
 export default Header;
