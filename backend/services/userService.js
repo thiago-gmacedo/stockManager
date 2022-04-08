@@ -78,7 +78,7 @@ module.exports = {
 
   register: async (user) => {
     try {
-      await User.create(user);
+      await User.create({...user, user_role: 1});
       const token = await sign({id: user.id});
       return successMessage.USER_REGISTER_SUCCESSFUL(user, token);
     } catch (err) {
