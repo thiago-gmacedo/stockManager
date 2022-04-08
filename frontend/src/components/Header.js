@@ -6,7 +6,6 @@ const Header = () => {
 	const data = localStorage.getItem('user');
 	const payload = data ? JSON.parse(data).payload : null;
 
-	console.log(payload);
 	useEffect(() => {
 		if (!payload || !payload.token) {
 			navigate('/login');

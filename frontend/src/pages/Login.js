@@ -22,7 +22,6 @@ function Login() {
 		const {payload} = await authService
 			.login(loginInfo.username, loginInfo.password);
 		if (payload.token) {
-			console.log('fodase', payload.token);
 			navigate('/');
 		}
 	};
